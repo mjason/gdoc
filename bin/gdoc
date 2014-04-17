@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/gdoc'
+
+gen = Gdoc::Generate.new ARGV[0]
+
+gen.to_md
