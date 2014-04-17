@@ -1,29 +1,62 @@
-# Gdoc
+# Gdoc 
+> 一个用来生成自动化生成api 文档的工具
 
-TODO: Write a gem description
+## install
 
-## Installation
+`gem install gdoc`
 
-Add this line to your application's Gemfile:
+## 写法
 
-    gem 'gdoc'
+1. 创建一个文件入口，比如 index.gdoc
 
-And then execute:
+```ruby
+root "http://ip:3000"
 
-    $ bundle
+def form
+  @typ = 'application/x-www-form-urlencoded'
+end
 
-Or install it yourself as:
+def auth_user
+  headers AUTHORIZATION: '用户的token'
+end
 
-    $ gem install gdoc
+import 'src/session'
+```
 
-## Usage
+2. 创建src/session.gdoc
 
-TODO: Write usage instructions here
+```ruby
+model 'sessions'
+url '/api/v1/sessions'
 
-## Contributing
+post '' do
+  desc '用户登录API'
+  params form, {
+    email: '',
+    password: '',
+    system: 'win'
+  }
+  ok 200, {
+    id: '用户ID',
+    nickname: '用户昵称',
+    token: '密钥'
+  }
+end
 
-1. Fork it ( http://github.com/<my-github-username>/gdoc/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+get '.json' do
+  desc '获取用户信息'
+  auth true
+  auth_user
+  params json, {}
+  ok 200, {
+    nickname: 'user nickname',
+    email: 'email'
+  }
+end
+
+```
+
+目前支持get put post patch del， 可以自定义添加新的内容
+
+
+
