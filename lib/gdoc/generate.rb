@@ -82,7 +82,7 @@ module Gdoc
     end
 
     def gen_api_list_md
-      file = File.open "#{@out_dir}/index.md", 'w'
+      file = File.open "#{@out_dir}/Home.md", 'w'
       file.puts <<-md
 # index
 > api 列表
@@ -108,7 +108,9 @@ headers:
 ```
 
 content-type: #{@typ}
+
 method: #{method}
+
 params:
 
 ```javascript
@@ -120,8 +122,6 @@ return:
 ```
 #{JSON.pretty_generate @ok}
 ```
-
-@docs
       md
     end
 
@@ -130,7 +130,7 @@ return:
       file.puts @doc_md.join("\n* * *\n\n") 
       file.close
       @doc_md = []
-      @api_list << "[#{@model}](./#{@model}.md)"
+      @api_list << "[#{@model}](./wiki/#{@model})"
     end
 
   end
