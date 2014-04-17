@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["tywf91@gmail.com"]
   spec.summary       = %q{一个文档dsl}
   spec.description   = %q{简单的方式生成好看的md文档}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/mjason/gdoc"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
