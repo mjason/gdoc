@@ -24,7 +24,7 @@ module Gdoc
       @url = value
     end
 
-    def get url &blk
+    def get url, &blk
       blk.call
       @doc_md << <<-md
       ### #{root}#{url}
@@ -45,13 +45,13 @@ module Gdoc
       md
     end
 
-    def post url &blk
+    def post url, &blk
     end
 
-    def put url &blk
+    def put url, &blk
     end
 
-    def del url &blk
+    def del url, &blk
     end
 
     def patch url &blk
